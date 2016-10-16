@@ -1,6 +1,6 @@
 library(Biostrings)
 
-setwd("D:\\Proyectos\\Bioinformatica\\Evaluacion Individual")
+setwd("C:\\Users\\Kari\\Documents\\GitHub\\Bioinformatica\\Evaluacion_01\\Scripts")
 
 dnaSeqUndifenid = readDNAStringSet("secuencia.fasta")
 dnaSeqRatt = readDNAStringSet("rattusnorvegicuschromosomeY.fasta")

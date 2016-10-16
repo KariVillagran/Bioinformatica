@@ -1,0 +1,9 @@
+E-Value
+
+¿Es esta alineacion significativa?
+
+Establece un umbral de posibles comparaciones
+
+Valor e-value 0.0 significa que es la cantidad de falsos positivos posibles < 1e-179 <-- despues de esto es 0
+
+
