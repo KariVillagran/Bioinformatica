@@ -5,6 +5,7 @@ setwd("C:\\Users\\Kari\\Documents\\GitHub\\Bioinformatica\\Evaluacion_01\\Script
 dnaSeqUndifenid = readDNAStringSet("secuencia.fasta")
 dnaSeqRatt = readDNAStringSet("rattusnorvegicuschromosomeY.fasta")
 
+
 names(dnaSeqUndifenid)
 names(dnaSeqRatt)
 
@@ -19,3 +20,11 @@ alphabetFrequency(dnaSeqRatt)
 
 dinucleotideFrequency(dnaSeqUndifenid)
 dinucleotideFrequency(dnaSeqRatt)
+
+
+# Alineamiento Local
+
+mat = nucleotideSubstitutionMatrix(match=1, mismatch= -1,baseOnly = TRUE)
+localAlign = pairwiseAlignment(dnaSeqUndifenid[1],dnaSeqRatt[1],type="local",substitutionMatrix=mat, gapOpening=0, gapExtension=-1)
+
+print(localAlign)
