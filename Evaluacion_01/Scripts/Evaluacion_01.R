@@ -9,7 +9,7 @@ dnaSeqRatt = readDNAStringSet("rattusnorvegicuschromosomeY.fasta")
 names(dnaSeqUndifenid)
 names(dnaSeqRatt)
 
-length(dnaSeqUndifenid)
+length(dnaSeqUndifenid$`gi|661902763|gb|CM002824.1| Rattus norvegicus strain partialchromosome Y, partial genome shotgun sequence`)
 length(dnaSeqRatt)
 
 reverseComplement(dnaSeqUndifenid)
