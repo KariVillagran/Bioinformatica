@@ -25,15 +25,16 @@ app.get('/tree', function (req, res) {
 			var fileName = req.query.fileName;
 			var typeFile = req.query.typeFile;
 			var model = req.query.model;
+			var typeFileUpper = typeFile.toUpperCase();
 			var type_method = { 
 			  njhamming: `nj(dist.hamming(data))`,
-			  EvolutionaryModelHamming: `nj(dist.${typeFile}(as.${typeFile}bin(data),model='${model}'))`,
+			  EvolutionaryModelHamming: `nj(dist.${typeFile}(as.${typeFileUpper}bin(data),model='${model}'))`,
 			  BioNJHamming: `bionj(dist.hamming(data))`,
-			  EvolutionaryModelBioNJ: `bionj(dist.${typeFile}(as.${typeFile}bin(data),model='${model}'))`,
+			  EvolutionaryModelBioNJ: `bionj(dist.${typeFile}(as.${typeFileUpper}bin(data),model='${model}'))`,
 			  UPGMAHamming: `upgma(dist.hamming(data))`,
-			  UPGMAEvolutionaryModel: `upgma(dist.${typeFile}(as.${typeFile}bin(data),model='${model}'))`,
+			  UPGMAEvolutionaryModel: `upgma(dist.${typeFile}(as.${typeFileUpper}bin(data),model='${model}'))`,
 			  WPGMAHamming: `wpgma(dist.hamming(data))`,
-			  WPGMAEvolutionaryModel: `wpgma(dist.${typeFile}(as.${typeFile}bin(data),model='${model}'))`,
+			  WPGMAEvolutionaryModel: `wpgma(dist.${typeFile}(as.${typeFileUpper}bin(data),model='${model}'))`,
 			  FastMinimumEvolutionBalanced: `fastme.bal(dist.hamming(data), nni = TRUE, spr = TRUE, tbr = TRUE)`,
 			  FastMinimumEvolutionOLS: `fastme.ols(dist.hamming(data), nni = TRUE)`,
 			  LeastSquaresFm: `Rfitch(dist.hamming(data), path='${__dirname}/sources/exe',quiet=TRUE,method='fm')`,
