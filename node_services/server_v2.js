@@ -7,11 +7,22 @@ var bodyParser 	= require('body-parser');
 var rio 		= require("rio");
 var formidable = require('formidable');
 
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+
+app.use(allowCrossDomain); 
+
 // Generamos el puerto de conexión
 var port = 8083;
 
 server.listen(port);
 console.log('Servidor Node.js iniciado en puerto: ' + port);
+
+
 
 // support json encoded bodies
 app.use(bodyParser.json()); 
@@ -41,6 +52,11 @@ app.get('/tree', function (req, res) {
 			  LeastSquaresLs: `Rfitch(dist.hamming(data), path='${__dirname}/sources/exe',quiet=TRUE,method='ls')`
 			};
 			var type_methode = type_method[req.query.type_m];
+			console.log(`library("phangorn");library("ape");library("RJSONIO");
+			    		  data=as.phyDat(read.${ typeFile }("http://localhost:8081/${ fileName }"));
+			    		  write.tree(${type_methode},"C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
+			    		  response <- read.table("C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
+			    		  toString(response$V1)`);
 		  	rio.$e({
 			    command: `library("phangorn");library("ape");library("RJSONIO");
 			    		  data=as.phyDat(read.${ typeFile }("http://localhost:8081/${ fileName }"));
