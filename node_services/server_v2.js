@@ -48,17 +48,12 @@ app.get('/tree', function (req, res) {
 			  WPGMAEvolutionaryModel: `wpgma(dist.${typeFile}(as.${typeFileUpper}bin(data),model='${model}'))`,
 			  FastMinimumEvolutionBalanced: `fastme.bal(dist.hamming(data), nni = TRUE, spr = TRUE, tbr = TRUE)`,
 			  FastMinimumEvolutionOLS: `fastme.ols(dist.hamming(data), nni = TRUE)`,
-			  LeastSquaresFm: `Rfitch(dist.hamming(data), path='${__dirname}/sources/exe',quiet=TRUE,method='fm')`,
-			  LeastSquaresLs: `Rfitch(dist.hamming(data), path='${__dirname}/sources/exe',quiet=TRUE,method='ls')`
+			  LeastSquaresFm: `Rfitch(dist.hamming(data), path='C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/sources/exe',quiet=TRUE,method='fm')`,
+			  LeastSquaresLs: `Rfitch(dist.hamming(data), path='C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/sources/exe',quiet=TRUE,method='ls')`
 			};
 			var type_methode = type_method[req.query.type_m];
-			console.log(`library("phangorn");library("ape");library("RJSONIO");
-			    		  data=as.phyDat(read.${ typeFile }("http://localhost:8081/${ fileName }"));
-			    		  write.tree(${type_methode},"C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
-			    		  response <- read.table("C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
-			    		  toString(response$V1)`);
 		  	rio.$e({
-			    command: `library("phangorn");library("ape");library("RJSONIO");
+			    command: `library("phangorn");library("ape");library("RJSONIO");library("Rphylip");
 			    		  data=as.phyDat(read.${ typeFile }("http://localhost:8081/${ fileName }"));
 			    		  write.tree(${type_methode},"C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
 			    		  response <- read.table("C:/Users/Ana/Documents/Usach/Bioinformatica/Proyecto_filogenia/node_services/public/data.tree");
@@ -99,7 +94,7 @@ app.get('/treeBootstrap', function (req, res) {
 			};
 		var type_methode = type_method[req.query.type_m];
 	  	rio.$e({
-		    command: `library("phangorn");library("ape");library("RJSONIO");
+		    command: `library("phangorn");library("ape");library("RJSONIO");library("Rphylip");
 			    	  data=as.phyDat(read.${typeFile}("http://localhost:8081/${fileName}"));
 			    	  tree1=${type_methode};
   					  NJtrees = bootstrap.phyDat(data, FUN=function(x)${type_methode}, bs=100);
@@ -142,7 +137,7 @@ app.get('/treeParsimony', function (req, res) {
 			};
 		var type_methode = type_method[req.query.type_m];
 	  	rio.$e({
-		    command: `library("phangorn");library("ape");library("RJSONIO");
+		    command: `library("phangorn");library("ape");library("RJSONIO");library("Rphylip");
 			    	  data=as.phyDat(read.${typeFile}("http://localhost:8081/${fileName}"));			    	  
 			    	  tree1=${type_methode};
 			    	  tree1=optim.parsimony(tree1, data);
@@ -185,7 +180,7 @@ app.get('/treeLikelihood', function (req, res) {
 			};
 		var type_methode = type_method[req.query.type_m];
 	  	rio.$e({
-		    command: `library("phangorn");library("ape");library("RJSONIO");
+		    command: `library("phangorn");library("ape");library("RJSONIO");library("Rphylip");
 			    	  data=as.phyDat(read.${typeFile}("http://localhost:8081/${fileName}"));			    	  
 			    	  tree1=${type_methode};
 			    	  
